@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha Seu Personagem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-image: url('https://miro.medium.com/v2/resize:fit:720/format:webp/0*dGyyKbASSbUSWVv6.jpg'); /* Adicionando a imagem de fundo */
+            background-size: cover; /* Faz a imagem cobrir toda a tela */
+            background-position: center; /* Centraliza a imagem */
+            color: #fff; /* Cor branca para contrastar com o fundo */
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        input[type="radio"] {
+            margin: 10px;
+            accent-color: #4CAF50;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .character-image {
+            width: 200px;
+            height: 200px;
+            margin-top: 20px;
+        }
+
+        .image-container {
+            display: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #result {
+            margin-top: 40px;
+        }
+
+        #message {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Escolha seu Personagem</h1>
+
+    <form id="characterForm">
+        <input type="radio" id="mago" name="personagem" value="Mago">
+        <label for="mago">Mago</label><br><br>
+
+        <input type="radio" id="guerreiro" name="personagem" value="Guerreiro">
+        <label for="guerreiro">Guerreiro</label><br><br>
+
+        <input type="radio" id="arqueiro" name="personagem" value="Arqueiro">
+        <label for="arqueiro">Arqueiro</label><br><br>
+
+        <button type="button" onclick="confirmarEscolha()">Confirmar Escolha</button>
+    </form>
+
+    <div id="result">
+        <p id="message"></p>
+        <div id="characterImage" class="image-container">
+            <img id="magoImage" class="character-image" src="https://static.vecteezy.com/system/resources/previews/048/759/453/large_2x/wizard-with-long-beard-and-hat-free-png.png" alt="Mago" style="display: none;">
+            <img id="guerreiroImage" class="character-image" src="https://static.vecteezy.com/system/resources/previews/044/183/652/non_2x/ancient-roman-warrior-cartoon-character-free-png.png" alt="Guerreiro" style="display: none;">
+            <img id="arqueiroImage" class="character-image" src="https://static.vecteezy.com/system/resources/previews/056/945/262/non_2x/serene-abstract-3d-archer-illustration-fantasy-game-character-detailed-free-png.png" alt="Arqueiro" style="display: none;">
+        </div>
+    </div>
+
+    <script>
+        function confirmarEscolha() {
+            var personagemSelecionado = document.querySelector('input[name="personagem"]:checked');
+            var messageElement = document.getElementById("message");
+            var imageContainer = document.getElementById("characterImage");
+
+            // Ocultando todas as imagens antes de mostrar a escolhida
+            document.getElementById("magoImage").style.display = "none";
+            document.getElementById("guerreiroImage").style.display = "none";
+            document.getElementById("arqueiroImage").style.display = "none";
+
+            if (personagemSelecionado) {
+                // Exibindo a imagem correspondente
+                if (personagemSelecionado.value === "Mago") {
+                    messageElement.textContent = "Você escolheu ser um Mago! Prepare-se para lançar feitiços!";
+                    document.getElementById("magoImage").style.display = "block"; // Exibe a imagem do Mago
+                } else if (personagemSelecionado.value === "Guerreiro") {
+                    messageElement.textContent = "Você escolheu ser um Guerreiro! Prepare-se para batalhas épicas!";
+                    document.getElementById("guerreiroImage").style.display = "block"; // Exibe a imagem do Guerreiro
+                } else if (personagemSelecionado.value === "Arqueiro") {
+                    messageElement.textContent = "Você escolheu ser um Arqueiro! Prepare-se para acertar alvos distantes!";
+                    document.getElementById("arqueiroImage").style.display = "block"; // Exibe a imagem do Arqueiro
+                }
+            } else {
+                messageElement.textContent = "Por favor, escolha um personagem!";
+            }
+            imageContainer.style.display = "flex"; // Mostra a área onde as imagens ficam
+        }
+    </script>
+
+</body>
+</html>

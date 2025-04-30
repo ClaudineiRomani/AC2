@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digite para deixar maiúsculo o texto</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4IsEoIATxAu5zBN7ZDiamNr1ilbQLEZxlfe_d4h-xjFs4Z8ZGT46BBzJ4vrGGSP0EG6OC6ySIFkjpDvCGuG0j9rbA0GZA9pdV6TQGjlmY9dF5gNduTCsKr-AdYa3wA2tGnwF3TeY43TY/s1600/unnamed+%25284%2529.png');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #5c6bc0;
+            box-shadow: 0 0 8px rgba(92, 107, 192, 0.3);
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Digite para deixar maiúsculo o texto:</h2>
+        <input type="text" id="inputText" oninput="transformarCaixaAlta()" placeholder="Digite algo...">
+        <p>O texto será automaticamente convertido para maiúsculas.</p>
+    </div>
+
+    <script>
+        function transformarCaixaAlta() {
+            var input = document.getElementById('inputText');
+            input.value = input.value.toUpperCase();
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4IsEoIATxAu5zBN7ZDiamNr1ilbQLEZxlfe_d4h-xjFs4Z8ZGT46BBzJ4vrGGSP0EG6OC6ySIFkjpDvCGuG0j9rbA0GZA9pdV6TQGjlmY9dF5gNduTCsKr-AdYa3wA2tGnwF3TeY43TY/s1600/unnamed+%25284%2529.png');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+            padding: 30px;
+            width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #tarefa-lista {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .tarefa-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        .tarefa-item input[type="checkbox"] {
+            margin-right: 15px;
+        }
+
+        .concluida {
+            text-decoration: line-through;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Tarefas</h1>
+        <input type="text" id="tarefa-input" placeholder="Digite uma tarefa" />
+        <button onclick="adicionarTarefa()">Adicionar</button>
+        <ul id="tarefa-lista"></ul>
+    </div>
+
+    <script>
+        function adicionarTarefa() {
+            const tarefaInput = document.getElementById('tarefa-input');
+            const tarefaTexto = tarefaInput.value.trim();
+
+            if (tarefaTexto !== "") {
+                const li = document.createElement('li');
+                li.classList.add('tarefa-item');
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+
+                const textoTarefa = document.createElement('span');
+                textoTarefa.textContent = tarefaTexto;
+
+                checkbox.addEventListener('change', function() {
+                    if (checkbox.checked) {
+                        textoTarefa.classList.add('concluida');
+                    } else {
+                        textoTarefa.classList.remove('concluida');
+                    }
+                });
+
+                li.appendChild(checkbox);
+                li.appendChild(textoTarefa);
+
+                document.getElementById('tarefa-lista').appendChild(li);
+
+                tarefaInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

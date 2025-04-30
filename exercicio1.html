@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhação</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4IsEoIATxAu5zBN7ZDiamNr1ilbQLEZxlfe_d4h-xjFs4Z8ZGT46BBzJ4vrGGSP0EG6OC6ySIFkjpDvCGuG0j9rbA0GZA9pdV6TQGjlmY9dF5gNduTCsKr-AdYa3wA2tGnwF3TeY43TY/s1600/unnamed+%25284%2529.png');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            font-size: 1.5rem;
+            padding: 15px;
+            width: 80%;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        input[type="text"]::placeholder {
+            color: #bbb;
+            font-style: italic;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #resultado {
+            font-size: 1.3rem;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .acerto {
+            color: green;
+        }
+
+        .erro {
+            color: red;
+        }
+
+        .aviso {
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Adivinhação</h1>
+        <p>Digite um número entre 1 e 50 e tente adivinhar o número sorteado!</p>
+        <input type="text" id="numero" placeholder="Digite um número entre 1 e 50">
+        <button onclick="adivinhar()">Adivinhe</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        const numeroSorteado = Math.floor(Math.random() * 50) + 1;
+
+        function adivinhar() {
+            const numeroUsuario = document.getElementById('numero').value;
+            const resultado = document.getElementById('resultado');
+
+            if (numeroUsuario === "") {
+                resultado.textContent = "Por favor, digite um número!";
+                resultado.className = "aviso";
+                return;
+            }
+
+            if (isNaN(numeroUsuario)) {
+                resultado.textContent = "Por favor, digite um número válido!";
+                resultado.className = "aviso";
+                return;
+            }
+
+            const numero = parseInt(numeroUsuario);
+
+            if (numero < 1 || numero > 50) {
+                resultado.textContent = "O número deve estar entre 1 e 50!";
+                resultado.className = "aviso";
+                return;
+            }
+
+            if (numero === numeroSorteado) {
+                resultado.textContent = "Você acertou!";
+                resultado.className = "acerto";
+            } else if (numero > numeroSorteado) {
+                resultado.textContent = "O número sorteado é menor!";
+                resultado.className = "erro";
+            } else {
+                resultado.textContent = "O número sorteado é maior!";
+                resultado.className = "erro";
+            }
+        }
+    </script>
+</body>
+</html>
